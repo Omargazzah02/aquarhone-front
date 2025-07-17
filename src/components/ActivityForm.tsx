@@ -61,7 +61,7 @@ export default function ActivityForm({ onSubmit, initial }: Props) {
           />
         ))}
       <button type="submit" className="btn-submit w-full">
-        {initial ? 'Modifier' : 'Ajouter'} l'activité
+        {initial ? 'Update' : 'Add'} Activity
       </button>
     </form>
   );

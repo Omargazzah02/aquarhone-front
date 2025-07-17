@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { Activity } from '@/components/ActivityCard';
 import ActivityForm from '@/components/ActivityForm';
-import { addActivity, deleteActivity, getActivities, updateActivity } from '@/services/api/activities';
+import { addActivity, deleteActivity, getActivitiesForAdmin, updateActivity } from '@/services/api/activities';
 import { useAuth } from '@/components/ClientProvider';
 import { useRouter } from 'next/navigation';
 
@@ -26,7 +26,7 @@ export default function page() {
 
   const loadActivities = async () => {
     try {
-      const data = await getActivities();
+      const data = await getActivitiesForAdmin();
       setActivities(data);
     } catch (error: any) {
       showAlert('error', error.message || 'Error loading activities.');
@@ -71,7 +71,7 @@ export default function page() {
 
   return (
     <div className="p-6">
-      <h1 className="text-2xl font-bold mb-4">Admin Panel</h1>
+      <h1 className="text-2xl font-bold mb-4 title">Admin Panel</h1>
 
       {alert && (
         <div
@@ -83,13 +83,14 @@ export default function page() {
         </div>
       )}
 
-      <ActivityForm onSubmit={handleAdd} />
+    <div className='w-full p-5'> <ActivityForm onSubmit={handleAdd}  /> </div>
 
-      <div className="grid gap-4">
+
+      <div className="grid gap-4 rounded-2xl m-4">
         {activities.map((activity) => (
-          <div key={activity.id} className="border p-4 rounded shadow">
+          <div key={activity.id} className="border p-4 rounded shadow bg-white">
             {editing?.id === activity.id ? (
-              <ActivityForm onSubmit={handleUpdate} initial={activity} />
+              <div className='w-full p-5'> <ActivityForm onSubmit={handleUpdate} initial={activity} /> </div>
             ) : (
               <>
                 <h3 className="text-lg font-bold">{activity.name}</h3>

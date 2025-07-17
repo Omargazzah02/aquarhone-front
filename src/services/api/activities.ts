@@ -20,7 +20,40 @@ export async function getActivities(): Promise<Activity[]> {
     console.error('Failed to load activities:', error);
     throw error;
   }
+
 }
+
+
+
+
+
+
+
+
+
+
+
+export async function getActivitiesForAdmin(): Promise<Activity[]> {
+  try {
+    const res = await fetch(`${API_URL}/activity/all/admin/`, {
+      method: "GET",
+      credentials: 'include',
+    });
+
+    if (!res.ok) {
+      const error = await res.json();
+      console.error(error.message);
+      throw new Error(error.message || 'Error while fetching activities.');
+    }
+
+    return await res.json();
+  } catch (error) {
+    console.error('Failed to load activities:', error);
+    throw error;
+  }
+}
+
+
 
 export async function addActivity(activity: Activity) {
   try {

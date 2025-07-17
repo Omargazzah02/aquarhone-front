@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Link from "next/link";
 
 export interface Activity {
   id: number;
@@ -58,7 +59,14 @@ export default function ActivityCard({ activity, onReserve }: Props) {
         >
           {activity.reserved ? 'Réservé' : 'Réserver'}
         </button>
+
+<Link  href={`/activities/${activity.id}`} className="link ">
+  See details
+</Link>
+
       </form>
+
+  
     </div>
   );
 }
