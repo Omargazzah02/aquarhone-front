@@ -35,7 +35,7 @@ export async function getActivities(): Promise<Activity[]> {
 
 export async function getActivitiesForAdmin(): Promise<Activity[]> {
   try {
-    const res = await fetch(`${API_URL}/activity/all/admin/`, {
+    const res = await fetch(`${API_URL}/activity/all/`, {
       method: "GET",
       credentials: 'include',
     });
